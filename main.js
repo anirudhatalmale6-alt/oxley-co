@@ -142,4 +142,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { passive: true });
   }
 
+  // ─── Scroll to top button ───
+  const scrollBtn = document.querySelector('.scroll-top');
+  if (scrollBtn) {
+    window.addEventListener('scroll', () => {
+      scrollBtn.classList.toggle('visible', window.scrollY > 400);
+    }, { passive: true });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // ─── Staggered reveal for cards ───
+  document.querySelectorAll('.grid-3 .card, .grid-4 .card, .grid-2 .card').forEach((card, i) => {
+    card.style.transitionDelay = `${(i % 4) * 0.1}s`;
+  });
+
 });
